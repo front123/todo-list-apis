@@ -1,6 +1,7 @@
 package todolisttest;
 
 import com.thoughtworks.springbootemployee.entity.Item;
+import com.thoughtworks.springbootemployee.exception.ItemNotFoundException;
 import com.thoughtworks.springbootemployee.repository.TodoListRepository;
 import com.thoughtworks.springbootemployee.service.Impl.TodoListServiceImpl;
 import com.thoughtworks.springbootemployee.service.TodoListService;
@@ -12,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -58,6 +60,20 @@ public class TodoListTest {
 
         // then
         verify(todoListRepository, times(1)).deleteById(item.getId());
+    }
+
+    @Test
+    void should_return_item_with_front_text_when_modify_item_given_1_item_in_db() throws ItemNotFoundException {
+        //given
+        Item newItem = new Item("front");
+        newItem.setId(1);
+        when(todoListRepository.findById(newItem.getId())).thenReturn(Optional.of(newItem));
+        when(todoListRepository.save(newItem)).thenReturn(newItem);
+        //when
+        Item item = todoListService.modifyItem(newItem);
+
+        //then
+        assertEquals("front", item.getText());
     }
 
 
