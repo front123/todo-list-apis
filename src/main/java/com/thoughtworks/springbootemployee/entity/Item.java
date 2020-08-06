@@ -1,10 +1,6 @@
 package com.thoughtworks.springbootemployee.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 
 @Entity
 @Table(name = "item")
@@ -44,7 +40,7 @@ public class Item {
 
 
 
-    public Item(@NotBlank String text) {
+    public Item(String text) {
         this.text = text;
     }
 
