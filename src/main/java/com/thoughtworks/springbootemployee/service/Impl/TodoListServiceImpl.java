@@ -18,6 +18,6 @@ public class TodoListServiceImpl implements TodoListService {
 
     @Override
     public Item addTodoItem(Item item) {
-        return new Item(" ");
+        return todoListRepository.save(item);
     }
 }
