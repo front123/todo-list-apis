@@ -1,13 +1,17 @@
 package com.thoughtworks.springbootemployee.controller;
 
+import com.thoughtworks.springbootemployee.dto.ItemRequestDto;
+import com.thoughtworks.springbootemployee.dto.ItemResponseDto;
 import com.thoughtworks.springbootemployee.entity.Item;
 import com.thoughtworks.springbootemployee.exception.ItemNotFoundException;
 import com.thoughtworks.springbootemployee.service.TodoListService;
+import com.thoughtworks.springbootemployee.utils.BeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/todos")
@@ -20,13 +24,16 @@ public class TodoController {
     }
 
     @GetMapping()
-    public List<Item> getTodoItems(){
-        return todoListService.getTodoItems();
+    public List<ItemResponseDto> getTodoItems(){
+        List<Item> items = todoListService.getTodoItems();
+        return items.stream().map(BeanMapper::toDtoResponse).collect(Collectors.toList());
     }
 
     @PostMapping()
-    public Item addTodoItem(@RequestBody @Valid Item item){
-        return todoListService.addTodoItem(item);
+    public ItemResponseDto addTodoItem(@RequestBody @Valid ItemRequestDto itemRequestDto){
+        Item item = BeanMapper.toItem(itemRequestDto);
+        Item returnItem = todoListService.addTodoItem(item);
+        return BeanMapper.toDtoResponse(returnItem);
     }
 
     @DeleteMapping("/{id}")
@@ -35,8 +42,10 @@ public class TodoController {
     }
 
     @PutMapping
-    public Item modifyTodoItem(@RequestBody @Valid Item item) throws ItemNotFoundException {
-        return todoListService.modifyItem(item);
+    public ItemResponseDto modifyTodoItem(@RequestBody @Valid ItemRequestDto itemRequestDto) throws ItemNotFoundException {
+        Item item = BeanMapper.toItem(itemRequestDto);
+        Item returnItem = todoListService.modifyItem(item);
+        return BeanMapper.toDtoResponse(returnItem);
     }
 
 
