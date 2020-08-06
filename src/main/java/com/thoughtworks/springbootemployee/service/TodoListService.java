@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TodoListService {
     List<Item> getTodoItems();
+
+    Item addTodoItem(Item item);
 }

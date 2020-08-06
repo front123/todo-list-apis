@@ -42,4 +42,11 @@ public class Item {
     public Boolean getDone() {
         return isDone;
     }
+
+    public Item(@NotBlank String text) {
+        this.text = text;
+    }
+
+    public Item() {
+    }
 }

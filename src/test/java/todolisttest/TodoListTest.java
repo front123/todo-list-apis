@@ -36,4 +36,16 @@ public class TodoListTest {
         assertEquals(2, newItems.size());
     }
 
+    @Test
+    void should_return_the_same_text_when_add_todo_item_given_0_item_in_db() {
+        //given
+        Item item = new Item("olivia");
+        when(todoListRepository.save(item)).thenReturn(item);
+        //when
+        Item newItem = todoListService.addTodoItem(item);
+        //then
+        assertEquals("olivia", newItem.getText());
+    }
+
+
 }
