@@ -1,23 +1,28 @@
 package com.thoughtworks.springbootemployee.entity;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
+@Table(name = "item")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotBlank
     private String text;
-    @NotNull
-    private Boolean isDone;
+    @Column(name = "is_done")
+    private Boolean done;
+
+    public Boolean getDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -27,9 +32,7 @@ public class Item {
         this.text = text;
     }
 
-    public void setDone(Boolean done) {
-        isDone = done;
-    }
+
 
     public Integer getId() {
         return id;
@@ -39,9 +42,7 @@ public class Item {
         return text;
     }
 
-    public Boolean getDone() {
-        return isDone;
-    }
+
 
     public Item(@NotBlank String text) {
         this.text = text;
