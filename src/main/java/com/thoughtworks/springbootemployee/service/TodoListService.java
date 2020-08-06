@@ -8,4 +8,6 @@ public interface TodoListService {
     List<Item> getTodoItems();
 
     Item addTodoItem(Item item);
+
+    void deleteTodoItem(Integer id);
 }

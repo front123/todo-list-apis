@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TodoListTest {
@@ -45,6 +45,19 @@ public class TodoListTest {
         Item newItem = todoListService.addTodoItem(item);
         //then
         assertEquals("olivia", newItem.getText());
+    }
+
+    @Test
+    void should_return_times_is_1_when_delete_todo_item_given_1_item_in_db(){
+        //given
+        Item item = new Item();
+        item.setId(1);
+
+        //when
+        todoListService.deleteTodoItem(item.getId());
+
+        // then
+        verify(todoListRepository, times(1)).deleteById(item.getId());
     }
 
 
