@@ -1,10 +1,9 @@
-package todolisttest;
+package com.thoughtworks.springbootemployee.todolisttest;
 
 import com.thoughtworks.springbootemployee.entity.Item;
 import com.thoughtworks.springbootemployee.exception.ItemNotFoundException;
 import com.thoughtworks.springbootemployee.repository.TodoListRepository;
 import com.thoughtworks.springbootemployee.service.Impl.TodoListServiceImpl;
-import com.thoughtworks.springbootemployee.service.TodoListService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

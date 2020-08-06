@@ -43,6 +43,10 @@ public class Item {
     public Item(String text) {
         this.text = text;
     }
+    public Item(String text, Boolean done){
+        this.text = text;
+        this.done = done;
+    }
 
     public Item() {
     }
