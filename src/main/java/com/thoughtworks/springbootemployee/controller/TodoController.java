@@ -41,13 +41,12 @@ public class TodoController {
         todoListService.deleteTodoItem(id);
     }
 
-    @PutMapping
-    public ItemResponseDto modifyTodoItem(@RequestBody @Valid ItemRequestDto itemRequestDto) throws ItemNotFoundException {
+    @PutMapping("/{id}")
+    public ItemResponseDto modifyTodoItem(@PathVariable Integer id, @RequestBody @Valid ItemRequestDto itemRequestDto) throws ItemNotFoundException {
         Item item = BeanMapper.toItem(itemRequestDto);
+        item.setId(id);
         Item returnItem = todoListService.modifyItem(item);
         return BeanMapper.toDtoResponse(returnItem);
     }
-
-
 
 }
