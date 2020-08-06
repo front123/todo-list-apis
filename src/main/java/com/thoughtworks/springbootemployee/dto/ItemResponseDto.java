@@ -1,14 +1,14 @@
 package com.thoughtworks.springbootemployee.dto;
 
-public class ItemDtoResponse {
+public class ItemResponseDto {
     private Integer id;
     private String text;
     private Boolean done;
 
-    public ItemDtoResponse(){
+    public ItemResponseDto(){
 
     }
-    public ItemDtoResponse(Integer id, String text, Boolean done){
+    public ItemResponseDto(Integer id, String text, Boolean done){
         this.id = id;
         this.text = text;
         this.done = done;

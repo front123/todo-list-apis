@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class ItemDtoRequest {
+public class ItemRequestDto {
 
     @NotBlank
     @Size(min = 1, max = 100)
@@ -12,8 +12,8 @@ public class ItemDtoRequest {
     @NotNull
     private Boolean done;
 
-    public ItemDtoRequest(){}
-    public ItemDtoRequest(String text, Boolean done){
+    public ItemRequestDto(){}
+    public ItemRequestDto(String text, Boolean done){
         this.text = text;
         this.done = done;
     }
