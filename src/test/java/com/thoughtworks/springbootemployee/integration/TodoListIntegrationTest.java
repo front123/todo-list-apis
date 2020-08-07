@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -20,5 +21,18 @@ public class TodoListIntegrationTest extends CommonIntegrationTest{
         mockMvc.perform(get("/todos").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    void should_return_item_with_text_front_when_add_todo_item_given() throws Exception {
+
+        String newItemJsonString = "{\n" +
+                "    \"text\": \"front\",\n" +
+                "    \"done\": false\n" +
+                "}";
+
+        mockMvc.perform(post("/todos").contentType(MediaType.APPLICATION_JSON).content(newItemJsonString))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("text").value("front"));
     }
 }
