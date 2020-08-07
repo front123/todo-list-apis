@@ -1,26 +1,20 @@
 package com.thoughtworks.springbootemployee.dto;
 
 public class ItemResponseDto {
-    private Integer id;
+    private String id;
     private String text;
     private Boolean done;
 
     public ItemResponseDto(){
 
     }
-    public ItemResponseDto(Integer id, String text, Boolean done){
+    public ItemResponseDto(String id, String text, Boolean done){
         this.id = id;
         this.text = text;
         this.done = done;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getText() {
         return text;
@@ -36,5 +30,13 @@ public class ItemResponseDto {
 
     public void setDone(Boolean done) {
         this.done = done;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

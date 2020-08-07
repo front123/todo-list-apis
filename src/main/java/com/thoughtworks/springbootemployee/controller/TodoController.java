@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/todos")
 public class TodoController {
 
@@ -41,11 +42,11 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public ItemResponseDto modifyTodoItem(@PathVariable Integer id,
+    public ItemResponseDto modifyTodoItem(@PathVariable String id,
                                           @RequestBody @Valid ItemRequestDto itemRequestDto)
             throws ItemNotFoundException {
         Item item = BeanMapper.toItem(itemRequestDto);
-        item.setId(id);
+        item.setId(Integer.parseInt(id));
         Item returnItem = todoListService.modifyItem(item);
         return BeanMapper.toDtoResponse(returnItem);
     }

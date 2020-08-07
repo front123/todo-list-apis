@@ -10,6 +10,7 @@ public class BeanMapper {
     public static ItemResponseDto toDtoResponse(Item item){
         ItemResponseDto itemResponseDto = new ItemResponseDto();
         BeanUtils.copyProperties(item, itemResponseDto);
+        itemResponseDto.setId(String.valueOf(item.getId()));
         return itemResponseDto;
     }
 
