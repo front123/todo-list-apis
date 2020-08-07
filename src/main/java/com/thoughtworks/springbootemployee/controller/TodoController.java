@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @CrossOrigin("*")
 @RequestMapping("/todos")
 public class TodoController {
-
+//todo move some logic to service
     private final TodoListService todoListService;
 
     public TodoController(TodoListService todoListService) {

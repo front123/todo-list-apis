@@ -64,9 +64,11 @@ public class TodoListTest {
     @Test
     void should_return_item_with_front_text_when_modify_item_given_1_item_in_db() throws ItemNotFoundException {
         //given
+        Item itemInDb = new Item("olivia");
+        itemInDb.setId(1);
         Item newItem = new Item("front");
         newItem.setId(1);
-        when(todoListRepository.findById(newItem.getId())).thenReturn(Optional.of(newItem));
+        when(todoListRepository.findById(newItem.getId())).thenReturn(Optional.of(itemInDb));
         when(todoListRepository.save(newItem)).thenReturn(newItem);
         //when
         Item item = todoListService.modifyItem(newItem);
